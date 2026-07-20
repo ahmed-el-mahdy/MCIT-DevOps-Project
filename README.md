@@ -1,136 +1,104 @@
-# 🛠️ MCIT DevOps Project
+# MCIT DevOps Internship Project
 
-![GitHub repo size](https://img.shields.io/github/repo-size/ahmed-el-mahdy/MCIT-DevOps-Project)
-![GitHub contributors](https://img.shields.io/github/contributors/ahmed-el-mahdy/MCIT-DevOps-Project)
-![GitHub stars](https://img.shields.io/github/stars/ahmed-el-mahdy/MCIT-DevOps-Project?style=social)
-![GitHub forks](https://img.shields.io/github/forks/ahmed-el-mahdy/MCIT-DevOps-Project?style=social)
+[![AWS](https://img.shields.io/badge/AWS-EKS%20%7C%20ECR-232F3E?logo=amazonwebservices&logoColor=white)](https://aws.amazon.com/)
+[![Terraform](https://img.shields.io/badge/Terraform-Infrastructure-844FBA?logo=terraform&logoColor=white)](https://developer.hashicorp.com/terraform)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-Workloads-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io/)
+[![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-D24939?logo=jenkins&logoColor=white)](https://www.jenkins.io/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-14B8A6)](https://ahmed-el-mahdy.github.io/)
 
----
+A collaborative MCIT internship delivery of a three-tier application, covering application code, containers, tests, Kubernetes manifests, Jenkins automation, Ansible, and AWS infrastructure as code.
 
-## 🌟 Project Overview
+![Angular client interface](ClientSide/public/UI.png)
 
-The **MCIT DevOps Project** aims to streamline the deployment and management of applications using **AWS EKS**, **Jenkins**, and **Terraform**, enabling efficient CI/CD pipelines. This project integrates multiple DevOps tools and practices to build a fully automated pipeline for deploying a three-tier application.
+## What This Repository Demonstrates
 
-### 🔧 Key Technologies
-- 🐳 **Docker** for containerization
-- ☸️ **Kubernetes** for container orchestration
-- 🏗️ **Terraform** for Infrastructure as Code (IaC)
-- 🔧 **Jenkins** for CI/CD pipeline automation
+- Angular client, .NET 8 API, SQL Server persistence, and automated tests in one delivery repository.
+- Local container orchestration through Docker Compose.
+- Kubernetes manifests for frontend, backend, SQL Server, ingress, configuration, secrets, and persistent storage.
+- Terraform for AWS networking, EKS, ECR, bastion access, IAM, remote state storage, and state locking.
+- Jenkins stages for dependency installation, tests, image builds, and registry publication.
+- Ansible configuration for supporting EC2 hosts.
 
----
+## Architecture
 
-## 🛠️ Tools Used
+```mermaid
+flowchart LR
+    USER[Client] --> WEB[Angular frontend]
+    WEB --> API[.NET API]
+    API --> DB[SQL Server]
+    CI[Jenkins] --> TEST[Application tests]
+    TEST --> IMG[Container images]
+    TF[Terraform] --> AWS[AWS VPC, EKS, ECR]
+    IMG --> K8S[Kubernetes workloads]
+    AWS --> K8S
+```
 
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white)
-![EKS](https://img.shields.io/badge/EKS-232F3E?style=flat-square&logo=amazon-ecs&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
-![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white)
-![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white)
-![Ansible](https://img.shields.io/badge/Ansible-EE0000?style=flat-square&logo=ansible&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=csharp&logoColor=white)
-![HCL](https://img.shields.io/badge/HCL-FFFFFF?style=flat-square&logo=hashicorp&logoColor=black)
-![CSS](https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=css3&logoColor=white)
-![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white)
-![Dotnet SDK](https://img.shields.io/badge/.NET-512BD4?style=flat-square&logo=.net&logoColor=white)
-![HTML](https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=html5&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
+## Repository Map
 
----
+| Path | Responsibility |
+| --- | --- |
+| `ClientSide` | Angular application and client tests |
+| `ServerSide` | .NET solution, API, business/data layers, migrations, and tests |
+| `docker-compose.yml` | Local frontend, API, and SQL Server stack |
+| `k8s-manifets` | Kubernetes workload and networking resources |
+| `terraform` | AWS VPC, EKS, ECR, IAM, bastion, and state resources |
+| `Jenkinsfile` | Build, test, image build, and image push stages |
+| `Ansible` | EC2 inventory and configuration playbook |
 
-## 👥 Collaborators
+## Run the Application Locally
 
-A special thanks to our collaborators who helped make this project a success:
-- [ibrahim-mohamed-zaghloul](https://github.com/ibrahim-mohamed-zaghloul)
-- [Michael-Haleem](https://github.com/Michael-Haleem)
-- [Eng-Mohamed-Emad](https://github.com/Eng-Mohamed-Emad)
-- [zabdeln4](https://github.com/zabdeln4)
+Docker Compose changes local container state and downloads several images:
 
----
+```bash
+git clone https://github.com/ahmed-el-mahdy/MCIT-DevOps-Project.git
+cd MCIT-DevOps-Project
+docker compose up --build
+```
 
-## 📝 Recent Updates
-- 🚀 Environment variables added to Kubernetes deployments for improved configurability.
-- 🧪 CI/CD pipeline enhanced with automated testing using Jenkins.
-- 🐳 Docker Compose and Kubernetes manifest files updated for Minikube compatibility.
+The Compose file exposes the client on port `80`, the API on port `8082`, and SQL Server on host port `1435`.
 
----
+## Validate the Delivery Assets
 
-## 🚀 Getting Started
-1. **Prerequisites**: Ensure you have Docker, Kubernetes, and AWS CLI installed.
-2. **Installation**:
-   ```bash
-   git clone https://github.com/ahmed-el-mahdy/MCIT-DevOps-Project.git
-   cd MCIT-DevOps-Project
-   docker-compose up
-      
-### ☸️ Run with Minikube:
-Ensure Minikube is installed and running, then apply the Kubernetes manifest files:
-      
-     kubectl apply -f k8s-manifests/
+Use read-only validation before any cloud deployment:
 
-## 🤖 Ansible Playbooks
-This project utilizes Ansible for automating application deployments and configuration management. The playbooks are designed to:
-- Install necessary packages.
-- Configure application settings.
-- Manage service states.
+```bash
+docker compose config
+dotnet test ServerSide/WebApp.sln
+kubectl apply --dry-run=client -f k8s-manifets/
 
-### How to Run Ansible Playbooks
+cd terraform
+terraform fmt -check -recursive
+terraform init -backend=false
+terraform validate
+terraform plan
+```
 
--   Ensure you have Ansible installed and the inventory file set up with your target hosts.
--   
-To execute an Ansible playbook, use the following command:
-      ```bash
-   
-        ansible-playbook -i inventory playbook.yml
+The Terraform plan can describe billable AWS resources. Review region, AMIs, network ranges, IAM permissions, and backend configuration before applying.
 
+## Delivery Boundaries
 
+- The Jenkinsfile builds and publishes images; Kubernetes deployment remains a separate operational step.
+- The repository is a team project and this public copy is a fork. Collaborator links and Git history preserve that context.
+- The Kubernetes folder name is intentionally retained as `k8s-manifets` to match the committed repository.
+- Terraform provisions the EKS platform; the application database in the runtime manifests is SQL Server, not RDS MySQL.
 
-## 🌱 Terraform
-Terraform is used in this project to provision the AWS infrastructure. It allows for Infrastructure as Code (IaC), ensuring reproducibility and version control.
+## Security and Modernization Notes
 
-### Resources Provisioned
-- **VPC**: Virtual Private Cloud for network isolation.
-- **Subnets**: Configured for public and private access.
-- **EC2 Instances**: For running applications and services.
-- **RDS**: MySQL database instance for data storage.
+- The Compose password is a local demonstration credential. Replace it with a secret manager or protected environment input outside local development.
+- Replace Kubernetes placeholder secrets and `latest` image tags before deployment.
+- Use workload identity or short-lived AWS credentials for CI/CD.
+- Restrict bastion and security-group ingress to approved networks.
+- Pin tool and image versions, add image scanning, and separate build from environment promotion for a production pipeline.
 
-###  Make sure you have Terraform installed and configured with your AWS credentials.
+## Collaboration
 
-### How to Deploy with Terraform
-1. Initialize Terraform:
-      ```bash
-      terraform init
-2. Plan the deployment:
-      ```bash
-      terraform plan
-1. Apply the changes:
-      ```bash
-      terraform apply
+This project was delivered with:
 
+- [Ibrahim Mohamed Zaghloul](https://github.com/ibrahim-mohamed-zaghloul)
+- [Michael Haleem](https://github.com/Michael-Haleem)
+- [Mohamed Emad](https://github.com/Eng-Mohamed-Emad)
+- [Ziad Abdelnasser](https://github.com/zabdeln4)
 
+## Status
 
-
-### 🧰 CI/CD Pipeline
-The CI/CD pipeline, managed using **Jenkins**, automates the process from code commits to deployment. It includes:
-
-- 🧹 **Code linting**
-- 🧪 **Automated testing**
-- 🏗️ **Container building**
-- 🚀 **Deployment to a Kubernetes cluster**
-
-### ☁️ Infrastructure as Code (IaC)
-Using **Terraform**, this project provisions the necessary AWS infrastructure:
-
-- 🌐 **VPC**
-- 🖧 **Subnets**
-- 💻 **EC2 Instances**
-- 🗄️ **RDS (MySQL) Database**
-
-Ensure you have Terraform installed and configured to interact with AWS.
-
-### 📝 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-This version enhances readability with icons and proper markdown formatting for code sections. Let me know if further improvements are needed!
-
+This repository is preserved as internship delivery evidence. It is suitable for architecture and CI/CD review, but the dated dependencies and demonstration credentials require modernization before production reuse.
