@@ -29,7 +29,7 @@ flowchart LR
     CI[Jenkins] --> TEST[Application tests]
     TEST --> IMG[Container images]
     TF[Terraform] --> AWS[AWS VPC, EKS, ECR]
-    IMG --> K8S[Kubernetes workloads]
+    IMG -.-> K8S[Kubernetes workloads]
     AWS --> K8S
 ```
 
@@ -76,6 +76,10 @@ terraform plan
 The Terraform plan can describe billable AWS resources. Review region, AMIs, network ranges, IAM permissions, and backend configuration before applying.
 
 ## Delivery Boundaries
+
+- The dotted image-to-workload edge denotes a separate deployment action, not an implemented Jenkins deployment stage. Read the actual pipeline and manifests before describing continuous delivery as automatic.
+- Review node/image/runtime versions, requests/probes, persistent storage, credentials and registry reachability before a new environment. Diagram topology is not proof of a live or load-tested cluster.
+- Personal contribution context and interview notes: [career reference map](https://github.com/ahmed-el-mahdy/Career-Advance#work-experience-reference). Retain collaborator attribution and do not describe the whole team delivery as sole authorship.
 
 - The Jenkinsfile builds and publishes images; Kubernetes deployment remains a separate operational step.
 - The repository is a team project and this public copy is a fork. Collaborator links and Git history preserve that context.
